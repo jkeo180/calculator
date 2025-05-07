@@ -1,0 +1,70 @@
+html
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Calculator</h1>
+  <div id="Calculator" class="Calculator">
+    <div id="display"></div>
+  <button onclick="calculator_key('1')">1</button>
+  <button onclick="calculator_key('2')">2</button>
+  <button onclick="calculator_key('3')">3</button>
+  <button onclick="calculator_key('4')">4</button>
+  <button onclick="calculator_key('5')">5</button>
+  <button onclick="calculator_key('/')">/</button>
+  <button onclick="calculator_key('6')">6</button>
+  <button onclick="calculator_key('7')">7</button>
+  <button onclick="calculator_key('8')">8</button>
+  <button onclick="calculator_key('9')">9</button>
+  <button onclick="calculator_key('0')">0</button>
+  <button onclick="calculator_key('+')">+</button>
+  <button onclick="calculator_key('*')">*</button>
+  <button onclick="calculator_key('C')">C</button>
+  <button onclick="calculator_key('CE')">CE</button>
+  <button onclick="calculator_key('.')">.</button>
+  <button onclick="calculator_key('=')">=</button>
+  <button onclick="calculator_key('-')">-</button>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+css
+#display {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f0f0f0;
+  min-height: 30px;
+}
+button {
+margin: 5px;
+padding: 10px;
+}
+.Calculator{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+  max-width: 220px;
+}
+js
+let displayValue = '';
+
+function calculator_key(value) {
+  const displayElement = document.getElementById('display');
+  if (value === '=') {
+    try {
+      displayValue = eval(displayValue);
+    } catch {
+      displayValue = 'Error';
+    }
+  } else if (value === 'C') {
+    displayValue = '';
+  } else if (value === 'CE') {
+    displayValue = displayValue.slice(0, -1);
+  } else {
+    displayValue += value;
+  }
+  displayElement.innerText = displayValue; // Update the display element
+}
